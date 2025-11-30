@@ -1,15 +1,15 @@
 const express = require("express");
-const auth = require("../middleware/auth");
+const router = express.Router();
+const authMiddleware = require("../middleware/auth");
 const checkRole = require("../middleware/checkRole");
 
-const router = express.Router();
-
-router.get("/admin-area", auth, checkRole(["admin"]), (req, res) => {
-  res.json({ message: "Welcome Admin!" });
-});
-
-router.get("/recruiter-area", auth, checkRole(["recruiter", "admin"]), (req, res) => {
-  res.json({ message: "Welcome Recruiter!" });
-});
+router.get(
+  "/admin",
+  authMiddleware,
+  checkRole(["admin"]),
+  (req, res) => {
+    res.json({ message: "RBAC working! Welcome Admin" });
+  }
+);
 
 module.exports = router;
