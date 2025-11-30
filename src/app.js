@@ -11,4 +11,5 @@ app.use("/api/test", testRoutes);
 
 app.use("/api/auth", authRoutes);
 
-moduule.exports = app;
+module.exports = app;
+
